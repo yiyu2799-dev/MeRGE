@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fast preflight checks for generic processed GRAPE-CpG arrays."""
+"""Fast preflight checks for generic processed MeRGE arrays."""
 import argparse
 import json
 from pathlib import Path
@@ -179,7 +179,9 @@ def main():
     if args.require_reference_lengths and not lengths:
         raise ValueError(
             'Reference chromosome lengths are required but absent from metadata. '
-            'Run scripts/update_metadata_reference_lengths.py with the original X.npz.'
+            'Populate metadata.json["chromosome_lengths"] from the matching reference assembly, '
+            'or regenerate the processed data with scripts/convert_mambacpg_to_merge.py '
+            'using the original X/y/pos NPZ files.'
         )
     if lengths:
         lengths = {canonical_chrom(k): int(v) for k, v in lengths.items()}

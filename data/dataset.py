@@ -228,8 +228,10 @@ class MethylationGenomeDataset(Dataset):
             if not raw:
                 raise ValueError(
                     'reference_length normalization requires metadata.json["chromosome_lengths"] '
-                    'or --reference_lengths_file. Run scripts/update_metadata_reference_lengths.py '
-                    'with the original X.npz, or use --position_normalization observed_max for legacy V11 behavior.'
+                    'or --reference_lengths_file. Supply lengths from the matching reference assembly, '
+                    'or regenerate the processed data with scripts/convert_mambacpg_to_merge.py '
+                    'using the original X/y/pos NPZ files. Use --position_normalization observed_max '
+                    'only to reproduce legacy V11 behavior.'
                 )
             lengths = self._canonicalize_length_mapping(raw)
             source = 'metadata.json:chromosome_lengths'

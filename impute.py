@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Impute originally unknown methylation entries with a trained GRAPE-CpG model.
+"""Impute originally unknown methylation entries with a trained MeRGE model.
 
 Predictions are written as per-segment NPZ shards instead of a dense genome-wide
 matrix, because large single-cell methylation datasets can contain billions of
@@ -16,7 +16,7 @@ import numpy as np
 import torch
 from torch_geometric.data import Data
 
-from models.model import GrapeCpGModel
+from models.model import MeRGEModel
 from training.checkpoints import load_raw_checkpoint, load_strict
 from training.trainer import build_dataset
 
@@ -177,7 +177,7 @@ def _process_split(model, dataset, device, output_dir, chunk_size, split_name):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Impute unknown CpG methylation states with GRAPE-CpG.')
+    parser = argparse.ArgumentParser(description='Impute unknown CpG methylation states with MeRGE.')
     parser.add_argument('--checkpoint', required=True)
     parser.add_argument('--processed_dir', default=None,
                         help='Override the processed-data path embedded in the checkpoint.')
@@ -196,7 +196,7 @@ def main():
     if not processed_dir:
         raise ValueError('processed_dir is missing from both the checkpoint and command line.')
 
-    model = GrapeCpGModel(args).to(device)
+    model = MeRGEModel(args).to(device)
     load_strict(model, args_cli.checkpoint, device)
     model.eval()
 

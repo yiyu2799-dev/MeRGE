@@ -24,7 +24,7 @@ def _get_activation(name):
 
 
 class EGraphSage(MessagePassing):
-    """Edge-enhanced GraphSAGE message passing used by GRAPE-CpG.
+    """Edge-enhanced GraphSAGE message passing used by MeRGE.
 
     Message: activation(Linear([neighbor_node || edge]))
     Update:  activation(Linear([aggregated_message || current_node]))

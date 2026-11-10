@@ -1,4 +1,4 @@
-"""Central defaults for the GRAPE-CpG paper/reference implementation.
+"""Central defaults for the MeRGE paper/reference implementation.
 
 Architecture-defining defaults match the validated model. Experiment-sensitive
 parameters remain configurable from the command line.

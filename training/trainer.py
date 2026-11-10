@@ -13,7 +13,7 @@ from torch_geometric.loader import DataLoader
 from config import parse_int_tuple
 from data.dataset import MethylationGenomeDataset
 from data.within_chromosome_dataset import WithinChromosomeMethylationDataset
-from models.model import GrapeCpGModel
+from models.model import MeRGEModel
 from training.checkpoints import load_stage2, load_strict, save_checkpoint
 from training.metrics import binary_metrics_from_logits, finite_metric, loss_for_logits
 
@@ -292,7 +292,7 @@ def train_model(args):
     val_loader = DataLoader(val_set, shuffle=False, **loader_kwargs)
     non_blocking = bool(args.pin_memory and device.type == 'cuda')
 
-    model = GrapeCpGModel(args).to(device)
+    model = MeRGEModel(args).to(device)
     _configure_staged_loading(model, args, device)
     print('Trainable parameters:', _count_trainable(model))
 

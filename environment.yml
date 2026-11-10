@@ -1,4 +1,4 @@
-name: grapecpg
+name: merge
 channels:
   - conda-forge
   - defaults

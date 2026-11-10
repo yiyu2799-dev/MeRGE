@@ -1,4 +1,4 @@
-"""Complete GRAPE-CpG paper model wiring."""
+"""Complete MeRGE paper model wiring."""
 
 import math
 
@@ -58,7 +58,11 @@ class MLPNet(nn.Module):
 
 
 class GrapeCpGModel(nn.Module):
-    """Global GRAPE graph encoder + optional multi-scale local neighbor block."""
+    """MeRGE model; the legacy class name is retained for checkpoint compatibility.
+
+    Combines a global GRAPE graph encoder with an optional multi-scale local
+    neighbor block. New code should import the equivalent MeRGEModel alias.
+    """
 
     def __init__(self, args):
         super().__init__()
@@ -240,3 +244,7 @@ class GrapeCpGModel(nn.Module):
 
     def forward(self, data):
         return self.decode_targets(self.encode_global(data), data)
+
+
+# Keep the original class object and pickle import path for existing checkpoints.
+MeRGEModel = GrapeCpGModel

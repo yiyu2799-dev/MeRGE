@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Evaluate a saved GRAPE-CpG checkpoint without retraining.
+"""Evaluate a saved MeRGE checkpoint without retraining.
 
 The model/data configuration is restored from the checkpoint itself to avoid
 silent architecture mismatches.  Only data location and evaluation scope may
@@ -14,7 +14,7 @@ from pathlib import Path
 import torch
 from torch_geometric.loader import DataLoader
 
-from models.model import GrapeCpGModel
+from models.model import MeRGEModel
 from training.checkpoints import load_raw_checkpoint, load_strict
 from training.trainer import build_dataset, build_loader_kwargs, evaluate_model
 
@@ -29,7 +29,7 @@ def _checkpoint_args(raw):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Evaluate a GRAPE-CpG checkpoint.')
+    parser = argparse.ArgumentParser(description='Evaluate a MeRGE checkpoint.')
     parser.add_argument('--checkpoint', required=True)
     parser.add_argument('--processed_dir', default=None,
                         help='Override the processed-data directory stored in the checkpoint.')
@@ -70,7 +70,7 @@ def main():
 
     loader_kwargs = build_loader_kwargs(args)
     loader = DataLoader(dataset, shuffle=False, **loader_kwargs)
-    model = GrapeCpGModel(args).to(device)
+    model = MeRGEModel(args).to(device)
     load_strict(model, args_cli.checkpoint, device)
     metrics = evaluate_model(
         model,

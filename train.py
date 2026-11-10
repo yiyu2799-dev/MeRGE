@@ -24,7 +24,7 @@ def _add_bool_pair(parser, name, default, help_true, help_false=None):
 
 def build_parser():
     parser = argparse.ArgumentParser(
-        description='Train GRAPE-CpG for single-cell DNA methylation imputation.'
+        description='Train MeRGE for single-cell DNA methylation imputation.'
     )
 
     parser.add_argument('--dataset_name', default='dataset')

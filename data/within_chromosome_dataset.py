@@ -1,4 +1,4 @@
-"""Single-chromosome position-split dataset for GRAPE-CpG.
+"""Single-chromosome position-split dataset for MeRGE.
 
 The existing chromosome-holdout dataset is intentionally left untouched.
 This class adds an independent channel in which one chromosome is sorted by

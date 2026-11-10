@@ -1,4 +1,4 @@
-"""Dataset split helpers for GRAPE-CpG.
+"""Dataset split helpers for MeRGE.
 
 This module deliberately contains no torch/torch_geometric dependency so that
 split semantics can be tested independently from model code.
